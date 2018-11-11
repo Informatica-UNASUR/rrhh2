@@ -1,0 +1,105 @@
+html,
+body {
+    height: 100%;
+    color: #566787;
+    background: #f5f5f5;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 13px;
+}
+.listado {
+    max-height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    /*display: flex;*/
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 54px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.form-signin {
+    width: 80%;
+    max-width: 430px;
+    /*padding: 15px;*/
+    margin: auto;
+}
+
+/* Propiedades del modal login */
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 14px;
+}
+.form-signin .form-control:focus {
+    z-index: 1;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+table.table td:last-child i {
+    opacity: 0.9;
+    font-size: 22px;    /* Tamaño de los iconos de acción */
+    cursor: pointer;
+}
+table.table td a {
+    font-weight: bold;
+    color: #566787;
+    display: inline-block;
+    text-decoration: none;
+    outline: none !important;
+}
+
+#edit:hover {
+    color: #FFC107;
+}
+#delete:hover {
+    color: #F44336;
+}
+#assignment:hover {
+    color: #15a499;
+}
+#cheader a {
+    -webkit-transition:all 1.9s ease;
+    -moz-transition:all 1.9s ease;
+    -o-transition:all 1.9s ease;
+    -ms-transition:all 1.9s ease;
+    /*width:5%;*/
+}
+#pdfHistoricoPago:hover {
+    color: #a40b18;
+    -webkit-transform:scale(1.25);
+    -moz-transform:scale(1.25);
+    -ms-transform:scale(1.25);
+    -o-transform:scale(1.25);
+    transform:scale(1.25);
+}
+#excelListSalario:hover {
+    color: #0da416;
+    -webkit-transform:scale(1.25);
+    -moz-transform:scale(1.25);
+    -ms-transform:scale(1.25);
+    -o-transform:scale(1.25);
+    transform:scale(1.25);
+}
+table.table td i {
+    font-size: 19px;
+}
+
+#dtDepartamento_info.dataTables_info {
+    font-size: 0.9em;
+    margin-top: -12px;
+    text-align: right;
+}
+
+#dtHistoricoPago tbody td {
+    font-size: 12px;
+}
+
