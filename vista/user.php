@@ -67,6 +67,11 @@ if (isset($_SESSION["usuario"])) {
                                        data-name="<?php echo $nombre ?>">
                                         <i class="material-icons" data-toggle="tooltip" id="delete" title="Eliminar">delete</i>
                                     </a>
+                                    <a href="#" data-toggle="modal" data-target="#editarContrasenaModal"
+                                       data-id="<?php echo $idUsuario ?>"
+                                       data-name="<?php echo $nombre ?>">
+                                        <i class="material-icons" data-toggle="tooltip" id="delete" title="Cambiar contraseña">lock_open</i>
+                                    </a>
 
                                 </td>
                             </tr>
@@ -79,6 +84,7 @@ if (isset($_SESSION["usuario"])) {
         </div>
         <?php include 'modal/eliminarUsuario.php'?>
     </div>
+    <?php include 'modal/editarContrasena.php'?>
 </div>
 
 

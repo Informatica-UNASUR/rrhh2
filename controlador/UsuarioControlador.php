@@ -51,4 +51,8 @@ class UsuarioControlador {
     public static function mostrarRoles() {
         return UsuarioDao::mostrarRoles();
     }
+
+    public static function actualizarPassword($usuario, $password) {
+        return UsuarioDao::actualizarPassword($usuario, $password);
+    }
 }

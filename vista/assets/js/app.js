@@ -229,6 +229,63 @@ $(document).ready(function() {
         document.getElementById('devengo').focus();
     });
 
+    $("#password_update").bind("submit", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: $(this).attr("method"),   // Captura el atributo del form, POSt
+            url: $(this).attr("action"),    // Obtiene validarCode.php
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $("#password_update button[type=submit]").html("Enviando...");
+                $("#password_update button[type=submit]").attr("disabled", "disabled");
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.valor === "true") {
+                    $("body").overhang({
+                        type: "success",
+                        message: "Actualizacion satisfactoria, te estamos redirigiendo al index",
+                        callback: function () {
+                            window.location.href = "cerrar-sesion.php";
+                        }
+                    });
+                } else if (response.valor === "bad") {
+                    $("body").overhang({
+                       type: "error",
+                       message: "Las nuevas contrasenas deben ser iguales"
+                       // duration: 2,
+                       // overlay: true
+                    });
+                } else if (response.valor === "false") {
+                    $("body").overhang({
+                        type: "error",
+                        message: "Las credenciales no son correctas",
+                        duration: 2,
+                        overlay: true,
+                        closeConfirm: true
+                    });
+                }
+            }
+            // error: function (response) {
+            //     if (response.valor === "badPass") {
+            //         $("body").overhang({
+            //             type: "error",
+            //             message: "Las nuevas contrasenas deben ser iguales",
+            //             duration: 2,
+            //             overlay: true
+            //         });
+            //     } else if (response.valor === "loginFalse") {
+            //         $("body").overhang({
+            //             type: "error",
+            //             message: "Las credenciales no son correctas",
+            //             duration: 2,
+            //             overlay: true
+            //         });
+            //     }
+            // }
+        });
+    });
+
     $("#agregarDeduccion").on("submit", function (e) {
         e.preventDefault();
         var data = $(this).serialize();
@@ -279,6 +336,18 @@ $(document).ready(function() {
         });
         resetFormPagoDetalle();
         listarEmpleados();
+    });
+
+    $("#editarContrasena").on("submit", function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        $.ajax({
+            method: "POST",
+            url: "passwordUpdate.php",
+            data: data
+        });
+        $('#editarContrasenaModal').modal('hide');
     });
 
     // Para calcular automaticamente el monto de ips 9%

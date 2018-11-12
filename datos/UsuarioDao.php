@@ -31,7 +31,7 @@ class UsuarioDao extends Conexion {
                 return true;
             }
         } else {
-            print_r("Usuario y password no encontrados + [$resultado]");
+            print_r("Usuario y password no encontrados + []");
         }
         return false;
     }
@@ -158,6 +158,21 @@ class UsuarioDao extends Conexion {
 
     public static function existe($nombre) {
         $query = "SELECT usuario FROM rrhh.usuario WHERE usuario = ('$nombre')";
+
+        self::getConexion();
+
+        $resultado = self::$conexion->prepare($query);
+        $resultado->execute();
+
+        if ($resultado->rowCount() === 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function actualizarPassword($usuario, $password) {
+        $query = "UPDATE usuario SET password = '$password' WHERE usuario.idUsuario = ('$usuario')";
 
         self::getConexion();
 

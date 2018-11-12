@@ -6,6 +6,13 @@ $('#agregarUsuarioModal').on('shown.bs.modal', function () {
     $('#usuario:text').focus();
 });
 
+$('#editarContrasenaModal').on('shown.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+
+    var idUsuario = button.data('id');
+    $('#idUsuario').val(idUsuario);
+});
+
 $('#editarUsuarioModal').on('shown.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
 

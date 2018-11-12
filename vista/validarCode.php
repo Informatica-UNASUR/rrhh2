@@ -20,10 +20,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") { // Validar que el metodo de envio sea
         $txtUsuario = validar_campo($_POST["txtUsuario"]);
         $txtPassword = validar_campo($_POST["txtPassword"]);
 
-        $resultado = array("valor" => "true");
+//        $resultado = array("valor" => "true");
 
         if(UsuarioControlador::login($txtUsuario, $txtPassword)) { // Si el user existe
-            //print_r("\nEntro en el if\n");
             $usuario = UsuarioControlador::getUsuario($txtUsuario, $txtPassword);
 
             if($usuario->getEstado()) {
@@ -34,14 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") { // Validar que el metodo de envio sea
                     "estado"    => $usuario->getEstado(),
                     "Rol_idRol" => $usuario->getIdRol()
                 );
-                //print_r($_SESSION["usuario"]);
+                $resultado = array("valor" => "true", "id_empleado" => $_SESSION["usuario"]["idUsuario"]);
                 return print(json_encode($resultado));
             }
             $resultado = array("valor" => "inactivo");
             return print(json_encode($resultado));
         }
         // Si no existe
-        print_r ("El usuario no existe\n");
+        print_r ("Acceso denegado debido a credenciales no válidas\n");
         $resultado = array("valor" => "false");
         return print(json_encode($resultado));
     }

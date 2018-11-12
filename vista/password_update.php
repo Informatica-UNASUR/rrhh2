@@ -18,10 +18,13 @@ if (isset($_SESSION["usuario"])) {
                     ACTUALIZACIÓN DE CONTRASEÑA
                 </div>
                 <div class="card-body">
-                    <form id="nuevoUsuario" action="registroCode.php" method="POST" role="form">
+                    <form id="password_update" action="passwordUpdate.php" method="POST" role="form">
                         <div class="form-group col-lg-12">
                             <label for="password">Contraseña actual</label>
                             <input type="password" name="txtContrasena" id="contrasenaActual" class="form-control" placeholder="Ingrese su contraseña...">
+                            <input type="hidden" id="usuario" name="txtUsuario" value="<?php echo $_SESSION["usuario"]["usuario"]; ?>">
+                            <input type="hidden" id="idUsuario" name="txtIdUsuario" value="<?php echo $_SESSION["usuario"]["idUsuario"]; ?>">
+                            <input type="hidden" id="opcion" name="opcion" value="updatePassword" >
                         </div>
                         <div class="form-group col-lg-12">
                             <label for="password">Nueva contraseña</label>
@@ -30,20 +33,15 @@ if (isset($_SESSION["usuario"])) {
                         <div class="form-group col-lg-12">
                             <label for="password">Confirmar contraseña</label>
                             <input type="password" name="txtConfirmarContrasena" id="contrasenaConfirmar" class="form-control" placeholder="Confirme su nueva contraseña...">
+                            <p class="text-danger"><small>Esta acción requiere volver a iniciar sesión.</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input id="agregar" type="submit" class="btn btn-success" value="Cambiar contraseña" disabled>
+                            <input id="agregar" type="submit" class="btn btn-success" value="Cambiar contraseña">
                         </div>
                     </form>
                 </div>
-                <?php include("modal/agregarCargo.php");?>
             </div>
         </div>
-        <?php include 'modal/eliminarCargo.php'?>
     </div>
 </div>
-
-
-<?php include("modal/editarCargo.php");?>
 <?php include 'partials/footer.php'; ?>

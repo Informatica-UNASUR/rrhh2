@@ -3,7 +3,7 @@
         <div class="modal-content" style="border-radius: 3px;">
             <form id="eliminarUsuario" action="eliminarUsuario.php" method="POST" role="form">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar Usuario</h4>
+                    <h4 class="modal-title">Desactivar Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -12,7 +12,7 @@
                         <input type="text" name="txtNombreUsuario" id="name" class="form-control" readonly>
                         <input type="hidden" name="txtIdUsuario" id="id">
                     </div>
-                    <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+<!--                    <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>-->
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                         <input type="submit" class="btn btn-danger" value="Desactivar">
