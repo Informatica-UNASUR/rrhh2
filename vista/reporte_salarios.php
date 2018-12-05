@@ -1,6 +1,6 @@
 <?php
 include '../controlador/NominaControlador.php';
-require '../vendor/fpdf/fpdf.php';
+require 'assets/fpdf/fpdf.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $pdf = new FPDF('p', 'mm', 'A4');

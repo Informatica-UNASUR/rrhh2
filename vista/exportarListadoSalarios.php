@@ -1,6 +1,6 @@
 <?php
 include '../controlador/EmpleadoControlador.php';
-require_once '../vendor/PHPExcel/PHPExcel.php';
+require_once 'assets/PHPExcel/PHPExcel.php';
 
 $resultado = EmpleadoControlador::mostrarSalarios();
 
