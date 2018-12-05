@@ -15,13 +15,13 @@ SET _pDiaMes = (SELECT ADDDATE(LAST_DAY(SUBDATE(_periodo, INTERVAL 1 MONTH)), 1)
 SET _uDiaMes = (SELECT LAST_DAY(_periodo) AS ultimo_dia_mes);
 
 SET _totalDeduccion = (
-  SELECT SUM(montoDeduccion) AS TotalDeduccion FROM rrhh.deduccion
+  SELECT SUM(montoDeduccion) AS TotalDeduccion FROM deduccion
   WHERE fechaDeduccion
   BETWEEN _pDiaMes AND _uDiaMes
   AND Empleado_idEmpleado = _idEmpleado
 );
 SET _totalDevengo = (
-  SELECT SUM(montoDevengo) AS TotalDevengo FROM rrhh.devengo
+  SELECT SUM(montoDevengo) AS TotalDevengo FROM devengo
   WHERE fechaDevengo BETWEEN _pDiaMes AND _uDiaMes
   AND Empleado_idEmpleado = _idEmpleado
 );

@@ -15,9 +15,8 @@ class EmpleadoDao extends Conexion {
 
     public static function mostrarEmpleados() {
         $query = "SELECT idEmpleado, nombre, apellido, 
-            ci, fechaNacimiento, sexo, telefono, direccion, email, numCuenta,
-            nacionalidad, nombreConyuge, foto, estado, Horario_idHorario, 
-            EstadoCivil_idEstadoCivil, Contrato_idContrato, fechaAsume, salarioFijo, idCargo, nombreCargo, idDepartamento, nombreDepartamento
+            ci, fechaNacimiento, sexo, telefono, direccion, email, nombreConyuge, foto, estado, 
+            EstadoCivil_idEstadoCivil, fechaAsume, salarioFijo, idCargo, nombreCargo, idDepartamento, nombreDepartamento
             FROM rrhh.empleado e
             inner join rrhh.empleadocargo ec
             on e.idEmpleado=ec.Empleado_idEmpleado
@@ -109,10 +108,8 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarSalarios() {
-        $query = "select idEmpleado, ci, nombre, apellido, salarioFijo, tipoContrato
+        $query = "select idEmpleado, ci, nombre, apellido, salarioFijo
               from rrhh.empleado e
-              join rrhh.contrato c
-              on e.Contrato_idContrato=c.idContrato
               join rrhh.empleadocargo ec
               on e.idEmpleado=ec.Empleado_idEmpleado
               where e.estado = 1";

@@ -18,7 +18,7 @@ if (isset($_SESSION["usuario"])) {
                     REPORTE DE EMPLEADOS ACTIVOS POR DEPARTAMENTO
                 </div>
                 <div class="card-body">
-                    <form action="reporte_empleados.php" method="POST">
+                    <form action="reporte_empleados.php" method="POST" target="_blank">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">Departamento</label>
                             <div class="col-sm-3">

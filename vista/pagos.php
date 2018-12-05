@@ -40,7 +40,7 @@ if (isset($_SESSION["usuario"])) {
                         </div>
                         <label class="col-sm-1 col-form-label">Periodo</label>
                         <div class="col-sm-2">
-                            <input name="periodo" id="periodoPago" type="month" class="form-control" disabled required>
+                            <input name="periodo" id="periodoPago" type="text" class="form-control" disabled required placeholder="-Seleccione el periodo-">
                         </div>
                         <button id="selectData" type="submit" class="btn btn-outline-dark" disabled><i class="fa fa-search">&nbsp;VER</i></button>
                     </div>
@@ -74,7 +74,7 @@ if (isset($_SESSION["usuario"])) {
                                             </div>
                                             <div class="form-group col-sm-12 mb-sm-1">
                                                 <label for="rol">Fecha de pago</label>
-                                                <input name="fechaPago" id="fechaPago" type="date" class="form-control" required>
+                                                <input name="fechaPago" id="fechaPago" type="text" class="form-control" required placeholder="-Seleccione la fecha-">
                                             </div>
                                             <div class="form-group col-sm-12">
                                                 <input id="agregar" type="submit" class="btn btn-sm btn-outline-success float-right" value="Guardar">

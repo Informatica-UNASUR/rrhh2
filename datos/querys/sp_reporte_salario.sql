@@ -11,8 +11,8 @@ DECLARE _uDiaMes DATE;
   SET _uDiaMes = (SELECT LAST_DAY(_periodo) AS ultimo_dia_mes);
 
 SELECT idEmpleado, CONCAT(nombre,' ',apellido) AS empleado, periodoPago , salario
-FROM rrhh.nominapago n
-INNER JOIN rrhh.empleado e
+FROM nominapago n
+INNER JOIN empleado e
 ON n.Empleado_idEmpleado=e.idEmpleado
 WHERE Empleado_idEmpleado = _idEmpleado
 AND periodoPago BETWEEN _pDiaMes AND _uDiaMes;

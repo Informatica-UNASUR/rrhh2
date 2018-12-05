@@ -23,6 +23,11 @@ class NominaControlador {
         return NominaDao::mostrarNomina($obj_Nomina);
     }
 
+
+    public static function liquidarSalario($periodo) {
+        return NominaDao::liquidarSalario($periodo);
+    }
+
     public static function reporteSalario($idEmpleado, $periodo) {
         $obj_Nomina = new Nomina();
         $obj_Nomina->setEmpleadoIdEmpleado($idEmpleado);

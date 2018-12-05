@@ -46,7 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario  = $_POST["txtIdUsuario"];
         $passwordCifrado = password_hash($password, PASSWORD_DEFAULT);
         UsuarioControlador::actualizarPassword($usuario, $passwordCifrado);
-        header("location:user.php");
+        $resultado = array("valor" => "true");
+        return print(json_encode($resultado));
+        //header("location:user.php");
     }
 } else {
     header("location:index.php");

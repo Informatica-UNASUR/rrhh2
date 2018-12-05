@@ -6,7 +6,7 @@ class DepartamentoDao extends Conexion {
     protected static $conexion;
 
     private static function getConexion() {
-        self::$conexion = Conexion::conectar();
+        return self::$conexion = Conexion::conectar();
     }
 
     private static function desconectar() {
@@ -67,9 +67,9 @@ class DepartamentoDao extends Conexion {
             on ec.Departamento_idDepartamento=d.idDepartamento
             where e.estado = 1";
 
-        self::getConexion();
+        //self::getConexion();
 
-        $resultado = self::$conexion->prepare($query);
+        $resultado = self::getConexion()->prepare($query);
         $resultado->execute();
 
         return $resultado;

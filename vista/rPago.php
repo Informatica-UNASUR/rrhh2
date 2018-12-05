@@ -18,7 +18,7 @@ if (isset($_SESSION["usuario"])) {
                     REPORTE DE LIQUIDACIONES
                 </div>
                 <div class="card-body">
-                    <form action="reporte_salarios.php" method="POST">
+                    <form action="reporte_salarios.php" method="POST" target="_blank">
                         <div class="form-group row mb-2">
                             <label class="col-sm-1 col-form-label text-right">Dpto</label>
                             <div class="col-sm-3">

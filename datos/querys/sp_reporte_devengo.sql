@@ -11,8 +11,8 @@ BEGIN
   SET _uDiaMes = (SELECT LAST_DAY(_periodo) AS ultimo_dia_mes);
 
 SELECT idDevengo, TipoDevengo, montoDevengo
-FROM rrhh.devengo d
-LEFT JOIN rrhh.tipodevengo td
+FROM devengo d
+LEFT JOIN tipodevengo td
 ON d.TipoDevengo_idTipoDevengo=td.idTipoDevengo
 WHERE Empleado_idEmpleado = _idEmpleado
 AND fechaDevengo BETWEEN _pDiaMes AND _uDiaMes;

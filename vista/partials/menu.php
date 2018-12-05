@@ -25,8 +25,17 @@
                             <a class="dropdown-item" href="cargo.php"><i class="fa fa-briefcase" aria-hidden="true"></i> Cargos</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a id="empleado" class="nav-link" href="#">Asistencias</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-md-down-none">Asistencias</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="carga_asistencia.php"><i class="fa fa-tasks" aria-hidden="true"></i> Cargar archivo de asistencias</a>
+                            <!-- <a class="dropdown-item" href="marcaciones.php"><i class="fa fa-users" aria-hidden="true"></i> Marcaciones</a>-->
+                            <a class="dropdown-item" href="calendario.php"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;Calendario de asistencias</a>
+                            <a class="dropdown-item" href="solicitudes.php"><i class="fa fa-file-text-o" aria-hidden="true"></i> Solicitar ausencia</a>
+                            <a class="dropdown-item" href="justificados.php"><i class="fa fa-file-text-o" aria-hidden="true"></i> Justificaciones</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +45,7 @@
                             <a class="dropdown-item" href="salarios.php"><i class="fa fa-tasks" aria-hidden="true"></i> Administrar salarios</a>
                             <a class="dropdown-item" href="listado_de_salarios.php"><i class="fa fa-users" aria-hidden="true"></i> Salarios</a>
                             <a class="dropdown-item" href="pagos.php"><i class="fa fa-usd" aria-hidden="true"></i> &nbsp;Realizar pago</a>
-                            <a class="dropdown-item" href="pagos.php"><i class="fa fa-file-text-o" aria-hidden="true"></i> Generar recibos</a>
+                            <a class="dropdown-item" href="liquidar_salario.php"><i class="fa fa-file-text-o" aria-hidden="true"></i> Liquidar Salario</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -65,6 +74,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="user.php"><i class="fa fa-user"></i> Usuarios</a>
                                 <a class="dropdown-item" href="rol.php"><i class="fa fa-sitemap" aria-hidden="true"></i> Roles</a>
+                                <a class="dropdown-item" href="backup.php"><i class="fa fa-cloud-download" aria-hidden="true"></i> Backup</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

@@ -17,6 +17,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $i++;
     }
 
+    if ($i === 0) {
+        exit();
+    }
+
     $pdf->AddPage('PORTRAIT', 'LETTER');
 
     class pdf extends FPDF

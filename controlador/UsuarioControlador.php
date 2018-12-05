@@ -10,6 +10,10 @@ class UsuarioControlador {
         return UsuarioDao::login($obj_usuario);
     }
 
+    public static function insertLogs($usuario) {
+        return UsuarioDao::insertLogs($usuario);
+    }
+
     public static function getUsuario($usuario, $password) {
         $obj_usuario = new Usuario();
         $obj_usuario->setUsuario($usuario);
@@ -50,6 +54,10 @@ class UsuarioControlador {
     // Mostrar roles
     public static function mostrarRoles() {
         return UsuarioDao::mostrarRoles();
+    }
+
+    public static function backup() {
+        return UsuarioDao::backup();
     }
 
     public static function actualizarPassword($usuario, $password) {

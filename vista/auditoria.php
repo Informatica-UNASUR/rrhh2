@@ -29,6 +29,7 @@ if (isset($_SESSION["usuario"])) {
                             <th>Accion</th>
                             <th>Tabla</th>
                             <th>Columna</th>
+                            <th>ID</th>
                             <th>Nuevo Valor</th>
                             <th>Antiguo Valor</th>
                         </tr>

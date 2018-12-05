@@ -173,6 +173,7 @@ $(document).ready(function() {
 
     $('#idEmpleado').change(function () {
         $('#periodoPago').removeAttr('disabled');
+        $('#selectData').removeAttr('disabled');
         $('#idNewDeduccion').removeAttr('disabled');
         $('#idNewDevengo').removeAttr('disabled');
         $('#listarDeduccion').removeAttr('disabled');
@@ -188,7 +189,7 @@ $(document).ready(function() {
     });
 
     $('#idNewDeduccion').click(function () {
-        $('#fechaDeduccion').val(hoyFecha());
+        //$('#fechaDeduccion').val(hoyFecha());
         $.ajax({
             type: 'POST',
             data: 'opcion='+"getAllDeduccion",
@@ -200,7 +201,7 @@ $(document).ready(function() {
         });
         $('#deduccion').removeAttr('disabled');
         $('#montoDeduccion').removeAttr('disabled');
-        $('#fechaDeduccion').removeAttr('disabled');
+        $('#fechaDeduccion').removeAttr('disabled').val(hoyFecha());
         $('#obsDeduccion').removeAttr('disabled');
         $('#addDeduccion').removeAttr('disabled');
         $('#listarDeduccion').removeAttr('disabled');
@@ -209,7 +210,7 @@ $(document).ready(function() {
     });
 
     $('#idNewDevengo').click(function () {
-        $('#fechaDevengo').val(hoyFecha());
+        //$('#fechaDevengo').val(hoyFecha());
         $.ajax({
             type: 'POST',
             url: 'getDevengo.php',
@@ -221,7 +222,7 @@ $(document).ready(function() {
         });
         $('#devengo').removeAttr('disabled');
         $('#montoDevengo').removeAttr('disabled');
-        $('#fechaDevengo').removeAttr('disabled');
+        $('#fechaDevengo').removeAttr('disabled').val(hoyFecha());
         $('#obsDevengo').removeAttr('disabled');
         $('#addDevengo').removeAttr('disabled');
         $('#listarDevengo').removeAttr('disabled');
@@ -345,7 +346,18 @@ $(document).ready(function() {
         $.ajax({
             method: "POST",
             url: "passwordUpdate.php",
-            data: data
+            data: data,
+            success: function (response) {
+                console.log(response);
+                if (response.valor === "true") {
+                    $("body").overhang({
+                        type: "success",
+                        message: "Contraseña actualizada correctamente",
+                        duration: 2,
+                        overlay: true
+                    });
+                }
+            }
         });
         $('#editarContrasenaModal').modal('hide');
     });
@@ -373,7 +385,108 @@ $(document).ready(function() {
             });
     }
 
+
+    // DESDE AQUI VAN LOS NUEVOS CAMBIOS PARA LA PRESENTACION DEL PROYECTO DICIEMBRE 2018
+    listarData(0);
+    $("#idEmpleado").click(function () {
+        $('#selectSolicitud').removeAttr('disabled');
+    });
+
+    $("#periodoSalario").click(function () {
+        $('#liquidar').removeAttr('disabled');
+    });
+
+
+    $("#cabeceraSolicitud").on("submit", function (e) {
+        e.preventDefault();
+        let id= $("#idEmpleado").val();
+        setId(id);
+        let data = $(this).serialize();
+        console.log(data+'&'+'idEmpleado='+id);
+
+        $('#motivo').removeAttr('disabled');
+        $('#fechaDesde').removeAttr('disabled');
+        $('#fechaHasta').removeAttr('disabled');
+        $('#horaDesde').removeAttr('disabled').val('08:00');
+        $('#horaHasta').removeAttr('disabled').val('17:00');
+        $('#CancelAddSolicitud').removeAttr('disabled');
+        $('#agregar').removeAttr('disabled');
+
+        listarData(id);
+    });
+
+    $("#cabeceraLiquidarSalario").on("submit", function (e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        console.log(data);
+        $.ajax({
+            method: "POST",
+            url: "liquidar_salario_request.php",
+            data: data
+        }).done(function (info) {
+            let json_info = JSON.parse(info);
+            console.log(json_info);
+            //resetSolicitudDetalle();
+            //listarData(id);
+        });
+    });
+
+    $("#formSolicitudDetalle").on("submit", function (e) {
+        e.preventDefault();
+        let data = $(this).serialize();
+        let motivo     = $("#motivo").val();
+        let fechaDesde = $("#fechaDesde").val();
+        let fechaHasta = $("#fechaHasta").val();
+        let horaDesde  = $("#horaDesde").val();
+        let horaHasta  = $("#horaHasta").val();
+        let id = getId();
+        let datos = 'txtMotivo='+motivo+'&txtFechaDesde='+fechaDesde+'&txtFechaHasta='+fechaHasta+'&txtHoraDesde='+horaDesde+'&txtHoraHasta='+horaHasta+'&idEmpleado='+getId();
+        console.log(datos);
+        console.log(data+'&idEmpleado='+getId()); // No uso, porque la hora esta con un formato raro
+        $.ajax({
+            method: "POST",
+            url: "solicitudAusencia.php",
+            data: datos
+        }).done(function (info) {
+            let json_info = JSON.parse(info);
+            console.log(json_info);
+            resetSolicitudDetalle();
+            listarData(id);
+        });
+    });
+
+    $("#fechaDevengo").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#fechaDeduccion").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#fechaPago").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#periodoPago").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#periodoSalario").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#fechaDesde").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' }); //format : 'DD-MM-YYYY'
+    $("#fechaHasta").bootstrapMaterialDatePicker({ weekStart : 1, time: false, lang: 'es' });
+    $("#horaDesde").bootstrapMaterialDatePicker({ date: false, shortTime: false, format: 'HH:mm' });
+    $("#horaHasta").bootstrapMaterialDatePicker({ date: false, shortTime: false, format: 'HH:mm' });
+
+    function resetSolicitudDetalle() {
+        let motivo = $('#motivo').attr('disabled', 'disabled');
+        let fechaDesde = $('#fechaDesde').attr('disabled', 'disabled');
+        let fechaHasta = $('#fechaHasta').attr('disabled', 'disabled');
+        let horaDesde  = $('#horaDesde').attr('disabled', 'disabled');
+        let horaHasta  = $('#horaHasta').attr('disabled', 'disabled');
+        let cancel     = $('#CancelAddSolicitud').attr('disabled', 'disabled');
+        let agg        = $('#agregar').attr('disabled', 'disabled');
+        motivo.html('<option value="" selected disabled>Selecciona el motivo</option>');
+        fechaDesde.val('');
+        fechaHasta.val('');
+        horaDesde.val('');
+        horaHasta.val('');
+    }
+
+    $("#CancelAddSolicitud").click(function () {
+        resetSolicitudDetalle();
+        $('#selectSolicitud').attr('disabled', 'disabled');
+    });
+
 });
+
 var idEmpGlobal;
 
 function checkCampos(obj) {
@@ -654,6 +767,7 @@ var listarAuditoria = function() {
             {"data":"accion"},
             {"data":"tabla"},
             {"data":"nombreColumna"},
+            {"data":"registroNro"},
             {"data":"nuevaDescripcion"},
             {"data":"antiguaDescripcion"}
         ]
@@ -808,6 +922,57 @@ var listarData = function (id) {
                 "className": "text-center"}
         ]
     });
+    var tableSolictitud = $('#dtHistoricoSolicitudes').DataTable({
+        "destroy": true,
+        "ajax": {
+            "method": "POST",
+            "data": parametros,
+            "url": "getHistoricoSolicitudes.php",
+            "dataSrc": function(data){
+                if(data === "no data"){
+                    return [];
+                }
+                else {
+                    return data.data;
+                }
+            }
+        },
+        "columns": [
+            {"data": "motivo"},
+            {"data": "fechaDesde"},
+            /*{"render":
+                    function ( data, type, row ) {
+                        let periodo;
+                        let dia = row['fechaDesde'];
+                        let year = dia.substring(0,4);
+                        let mes = dia.substring(5,7);
+                        let day = dia.substring(8, 10);
+                        let event = new Date(Date.UTC(year,mes,day));
+                        let options = { year: 'numeric', month: 'long', day: 'numeric'};
+                        periodo = event.toLocaleDateString('es-MX', options);
+                        return (periodo);
+                    }
+            },*/
+            {"data": "fechaHasta"},
+            /*{"render":
+                    function ( data, type, row ) {
+                        let periodo;
+                        let dia = row['fechaHasta'];
+                        let year = dia.substring(0,4);
+                        let mes = dia.substring(5,7);
+                        let day = dia.substring(8, 10);
+                        let event = new Date(Date.UTC(year,mes, day));
+                        let options = { year: 'numeric', month: 'long', day: 'numeric'};
+                        periodo = event.toLocaleDateString('es-MX', options);
+                        return (periodo);
+                    }
+            },*/
+            {"data": "horaDesde"},
+            {"data": "horaHasta"}
+        ]
+    });
+    let tableLiquidarSalario = $('#dtLiquidarSalario').DataTable({});
+
 };
 
 var accion_departamento = function (tbody, table) {

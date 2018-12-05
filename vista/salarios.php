@@ -71,7 +71,7 @@ if (isset($_SESSION["usuario"])) {
                                             </div>
                                             <label class="col-sm-0 text-right">Fecha:</label>
                                             <div class="col-sm-4">
-                                                <input type="date" id="fechaDevengo" name="fechaDevengo" class="form-control" disabled required>
+                                                <input type="text" id="fechaDevengo" name="fechaDevengo" class="form-control" disabled required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -114,7 +114,7 @@ if (isset($_SESSION["usuario"])) {
                                             </div>
                                             <label class="col-sm-0 text-right">Fecha:</label>
                                             <div class="col-sm-4">
-                                                <input type="date" id="fechaDeduccion" name="fechaDeduccion" class="form-control" disabled required>
+                                                <input type="text" id="fechaDeduccion" name="fechaDeduccion" class="form-control" disabled required>
                                             </div>
                                         </div>
                                         <div class="form-group row">

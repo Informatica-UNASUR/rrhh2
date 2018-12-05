@@ -7,7 +7,7 @@ CREATE PROCEDURE sp_agregar_deduccion (
   IN _obsDeduccion    VARCHAR(45)
 )
   BEGIN
-    INSERT 	rrhh.deduccion(Empleado_idEmpleado, TipoDeduccion_idTipoDeduccion, montoDeduccion, fechaDeduccion, observacion)
+    INSERT 	deduccion(Empleado_idEmpleado, TipoDeduccion_idTipoDeduccion, montoDeduccion, fechaDeduccion, observacion)
     VALUES (_idEmpleado, _idTipoDeduccion, _montoDeduccion, _fecha, _obsDeduccion);
   END //
 DELIMITER ;

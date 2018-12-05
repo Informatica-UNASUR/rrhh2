@@ -11,10 +11,10 @@ CREATE PROCEDURE sp_reporte_deduccion (
     SET _uDiaMes = (SELECT LAST_DAY(_periodo) AS ultimo_dia_mes);
 
     SELECT idDeduccion, tipoDeduccion, montoDeduccion
-    FROM rrhh.deduccion d
-      LEFT JOIN rrhh.tipodeduccion tp
+    FROM deduccion d
+      LEFT JOIN tipodeduccion tp
         ON d.TipoDeduccion_idTipoDeduccion=tp.idTipoDeduccion
     WHERE Empleado_idEmpleado = _idEmpleado
-          AND fechaDevengo BETWEEN _pDiaMes AND _uDiaMes;
+          AND fechaDeduccion BETWEEN _pDiaMes AND _uDiaMes;
   END //
 DELIMITER ;

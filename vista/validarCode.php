@@ -33,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") { // Validar que el metodo de envio sea
                     "estado"    => $usuario->getEstado(),
                     "Rol_idRol" => $usuario->getIdRol()
                 );
+                $log = UsuarioControlador::insertLogs($usuario->getIdUsuario());
                 $resultado = array("valor" => "true", "id_empleado" => $_SESSION["usuario"]["idUsuario"]);
                 return print(json_encode($resultado));
             }

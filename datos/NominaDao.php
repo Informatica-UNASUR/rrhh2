@@ -6,11 +6,25 @@ class NominaDao extends Conexion {
     protected static $conexion;
 
     private static function getConexion() {
-        self::$conexion = Conexion::conectar();
+        return self::$conexion = Conexion::conectar();
     }
 
     private static function desconectar() {
         self::$conexion = null;
+    }
+
+    public static function liquidarSalario($periodo) {
+        $query = "call sp_liquidar_salario(:periodo)";
+
+        $resultado = self::getConexion()->prepare($query);
+        $resultado->bindValue(":periodo", $periodo);
+
+        $resultado->execute();
+
+        if($resultado) {
+            return $resultado;
+        }
+        //return false;
     }
 
     public static function registrarNomina($nomina) {
@@ -35,9 +49,9 @@ class NominaDao extends Conexion {
         );
         */
 
-        self::getConexion();
+        //self::getConexion();
 
-        $resultado = self::$conexion->prepare($query);
+        $resultado = self::getConexion()->prepare($query);
         $resultado->execute();
 
         if($resultado) {

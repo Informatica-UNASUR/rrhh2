@@ -3,7 +3,9 @@
 include '../controlador/UsuarioControlador.php';
 
 if (isset($_SESSION["usuario"])) {
-
+    if($_SESSION["usuario"]["Rol_idRol"] == 2) {
+        header("location:index.php");
+    }
 } else {
     header("location:index.php");
 }
