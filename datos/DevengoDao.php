@@ -19,7 +19,7 @@ class DevengoDao extends Conexion
     public static function registrarDevengo($devengo) {
         $nombre = $devengo->getTipoDevengo();
 
-        $query = "INSERT INTO rrhh.tipodevengo (TipoDevengo) VALUES ('$nombre')";
+        $query = "INSERT INTO tipodevengo (TipoDevengo) VALUES ('$nombre')";
 
         self::getConexion();
 
@@ -63,7 +63,7 @@ class DevengoDao extends Conexion
     // Metodo para mostrar deduccions
     public static function mostrarDevengos()
     {
-        $query = "SELECT * FROM rrhh.tipodevengo";
+        $query = "SELECT * FROM tipodevengo";
 
         self::getConexion();
 
@@ -76,10 +76,10 @@ class DevengoDao extends Conexion
     public static function mostrarDevengoesP()
     {
 //        $q = "SELECT * FROM rrhh_db.tipodeduccion";
-        $query = "select * from rrhh.empleado e
-              inner join rrhh.deduccion d
+        $query = "select * from empleado e
+              inner join deduccion d
               on e.idEmpleado=d.Empleado_idEmpleado
-              inner join rrhh.tipodeduccion td
+              inner join tipodeduccion td
               on d.TipoDevengo_idTipoDevengo=td.idTipoDevengo";
 
         self::getConexion();
@@ -91,7 +91,7 @@ class DevengoDao extends Conexion
     }
 
     public static function existe($nombre) {
-        $query = "SELECT tipodevengo FROM rrhh.tipodevengo WHERE tipodevengo = ('$nombre')";
+        $query = "SELECT tipodevengo FROM tipodevengo WHERE tipodevengo = ('$nombre')";
 
         self::getConexion();
 

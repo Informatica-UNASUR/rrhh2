@@ -16,7 +16,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function login($usuario) {
-        $query = "SELECT * FROM rrhh.usuario WHERE usuario = :usuario";
+        $query = "SELECT * FROM usuario WHERE usuario = :usuario";
 
         self::getConexion();
         $resultado = self::$conexion->prepare($query);
@@ -78,10 +78,10 @@ class UsuarioDao extends Conexion {
 
     // Metodo para mostrar usuarios
     public static function mostrarUsuarios() {
-        $query = "SELECT * FROM rrhh.usuario u 
-              INNER JOIN rrhh.usuariorol ur 
+        $query = "SELECT * FROM usuario u 
+              INNER JOIN usuariorol ur 
               ON u.idUsuario=ur.Usuario_idUsuario
-              INNER JOIN rrhh.rol r
+              INNER JOIN rol r
               ON ur.Rol_idRol=r.idRol";
 
 //        self::getConexion();
@@ -94,7 +94,7 @@ class UsuarioDao extends Conexion {
 
     // Metodo para mostrar roles
     public static function mostrarRoles() {
-        $query = "SELECT * FROM rrhh.rol";
+        $query = "SELECT * FROM rol";
 
         //self::getConexion();
 
@@ -166,7 +166,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function existe($nombre) {
-        $query = "SELECT usuario FROM rrhh.usuario WHERE usuario = ('$nombre')";
+        $query = "SELECT usuario FROM usuario WHERE usuario = ('$nombre')";
 
         self::getConexion();
 

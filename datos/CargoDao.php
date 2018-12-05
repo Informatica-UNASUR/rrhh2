@@ -16,7 +16,7 @@ class CargoDao extends Conexion {
     public static function registrarCargo($cargo) {
         $nombre = $cargo->getNombreCargo();
 
-        $query = "INSERT INTO rrhh.cargo(nombreCargo) VALUES ('$nombre')";
+        $query = "INSERT INTO cargo(nombreCargo) VALUES ('$nombre')";
 
         self::getConexion();
 
@@ -33,7 +33,7 @@ class CargoDao extends Conexion {
         $idCargo     = $cargo->getIdCargo();
         $NombreCargo = $cargo->getNombreCargo();
 
-        $query = "UPDATE rrhh.cargo SET nombreCargo = ('$NombreCargo') WHERE idCargo = ('$idCargo')";
+        $query = "UPDATE cargo SET nombreCargo = ('$NombreCargo') WHERE idCargo = ('$idCargo')";
 
         self::getConexion();
 
@@ -48,7 +48,7 @@ class CargoDao extends Conexion {
 
     // Metodo para mostrar cargos
     public static function mostrarCargos() {
-        $query = "SELECT * FROM rrhh.cargo";
+        $query = "SELECT * FROM cargo";
 
         self::getConexion();
 
@@ -60,7 +60,7 @@ class CargoDao extends Conexion {
 
     // Metodo para eliminar cargo
     public static function eliminarCargo($idCargo) {
-        $query = "DELETE FROM rrhh.cargo WHERE idCargo = ('$idCargo')";
+        $query = "DELETE FROM cargo WHERE idCargo = ('$idCargo')";
 
         self::getConexion();
 

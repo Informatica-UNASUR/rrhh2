@@ -16,7 +16,7 @@ class DeduccionDao extends Conexion {
     public static function registrarDeduccion($deduccion) {
         $nombre = $deduccion->getTipoDeduccion();
 
-        $query = "INSERT INTO rrhh.tipodeduccion (tipoDeduccion) VALUES ('$nombre')";
+        $query = "INSERT INTO tipodeduccion (tipoDeduccion) VALUES ('$nombre')";
 
         self::getConexion();
 
@@ -59,7 +59,7 @@ class DeduccionDao extends Conexion {
         $idDeduccion     = $deduccion->getIdDeduccion();
         $NombreDeduccion = $deduccion->getNombreDeduccion();
 
-        $query = "UPDATE rrhh.deduccion SET nombreDeduccion = ('$NombreDeduccion') WHERE idDeduccion = ('$idDeduccion')";
+        $query = "UPDATE deduccion SET nombreDeduccion = ('$NombreDeduccion') WHERE idDeduccion = ('$idDeduccion')";
 
         self::getConexion();
 
@@ -74,7 +74,7 @@ class DeduccionDao extends Conexion {
 
     // Metodo para mostrar deduccions
     public static function mostrarDeducciones() {
-        $query = "SELECT * FROM rrhh.tipodeduccion";
+        $query = "SELECT * FROM tipodeduccion";
 
         self::getConexion();
 
@@ -85,10 +85,10 @@ class DeduccionDao extends Conexion {
     }
 
     public static function mostrarDeduccionesP($idEmpleado) {
-        $q = "select * from rrhh.empleado e
-              inner join rrhh.deduccion d
+        $q = "select * from empleado e
+              inner join deduccion d
               on e.idEmpleado=d.Empleado_idEmpleado
-              inner join rrhh.tipodeduccion td
+              inner join tipodeduccion td
               on d.TipoDeduccion_idTipoDeduccion=td.idTipoDeduccion
               where idEmpleado = '$idEmpleado'";
 
@@ -102,7 +102,7 @@ class DeduccionDao extends Conexion {
 
     // Metodo para eliminar deduccion
     public static function eliminarDeduccion($idDeduccion) {
-        $query = "DELETE FROM rrhh.deduccion WHERE idDeduccion = ('$idDeduccion')";
+        $query = "DELETE FROM deduccion WHERE idDeduccion = ('$idDeduccion')";
 
         self::getConexion();
 

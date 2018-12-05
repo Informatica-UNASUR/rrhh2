@@ -17,12 +17,12 @@ class EmpleadoDao extends Conexion {
         $query = "SELECT idEmpleado, nombre, apellido, 
             ci, fechaNacimiento, sexo, telefono, direccion, email, nombreConyuge, foto, estado, 
             EstadoCivil_idEstadoCivil, fechaAsume, salarioFijo, idCargo, nombreCargo, idDepartamento, nombreDepartamento
-            FROM rrhh.empleado e
-            inner join rrhh.empleadocargo ec
+            FROM empleado e
+            inner join empleadocargo ec
             on e.idEmpleado=ec.Empleado_idEmpleado
-            inner join rrhh.cargo c
+            inner join cargo c
             on ec.Cargo_idCargo=c.idCargo
-            inner join rrhh.departamento d
+            inner join departamento d
             on ec.Departamento_idDepartamento=d.idDepartamento order by nombreDepartamento";
 
         self::getConexion();
@@ -36,10 +36,10 @@ class EmpleadoDao extends Conexion {
 
     public static function obtenerEmpleado($idDepartamento) {
         $query = "select idEmpleado, idDepartamento,nombre, apellido, nombreDepartamento 
-              from rrhh.empleado e
-              inner join rrhh.empleadocargo ec
+              from empleado e
+              inner join empleadocargo ec
               on e.idEmpleado=ec.Empleado_idEmpleado
-              inner join rrhh.departamento d
+              inner join departamento d
               on ec.Departamento_idDepartamento=d.idDepartamento
               where idDepartamento = '$idDepartamento' and e.estado = 1
               order by nombre ASC";
@@ -53,7 +53,7 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarHorarios() {
-        $query = "select * from rrhh.horario";
+        $query = "select * from horario";
 
         self::getConexion();
 
@@ -64,7 +64,7 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarEstadoCivil() {
-        $query = "select * from rrhh.estadoCivil";
+        $query = "select * from estadoCivil";
 
         self::getConexion();
 
@@ -75,7 +75,7 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarContratos() {
-        $query = "select * from rrhh.contrato";
+        $query = "select * from contrato";
 
         self::getConexion();
 
@@ -86,7 +86,7 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarDepartamentos() {
-        $query = "SELECT idDepartamento, nombreDepartamento FROM rrhh.departamento";
+        $query = "SELECT idDepartamento, nombreDepartamento FROM departamento";
 
         self::getConexion();
 
@@ -97,7 +97,7 @@ class EmpleadoDao extends Conexion {
     }
 
     public static function mostrarCargos() {
-        $query = "SELECT * FROM rrhh.cargo";
+        $query = "SELECT * FROM cargo";
 
         self::getConexion();
 
@@ -109,8 +109,8 @@ class EmpleadoDao extends Conexion {
 
     public static function mostrarSalarios() {
         $query = "select idEmpleado, ci, nombre, apellido, salarioFijo
-              from rrhh.empleado e
-              join rrhh.empleadocargo ec
+              from empleado e
+              join empleadocargo ec
               on e.idEmpleado=ec.Empleado_idEmpleado
               where e.estado = 1";
 
@@ -130,12 +130,12 @@ class EmpleadoDao extends Conexion {
             $id = "d.idDepartamento=".$idDepartamento." and e.estado = 1 ";
         }
         $query = "select idEmpleado, ci, nombre, apellido, salarioFijo, nombreDepartamento, nombreCargo
-              from rrhh.empleado e
-              join rrhh.empleadocargo ec
+              from empleado e
+              join empleadocargo ec
               on e.idEmpleado=ec.Empleado_idEmpleado
-              join rrhh.Departamento d 
+              join Departamento d 
               on ec.Departamento_idDepartamento=d.idDepartamento
-              join rrhh.cargo c
+              join cargo c
               on ec.Cargo_idCargo=c.idCargo
               where ".$id."order by nombre asc";
 
@@ -158,7 +158,7 @@ class EmpleadoDao extends Conexion {
         $idEmpleado = $dato->getIdEmppleado();
         $salario    = $dato->getSalario();
 
-        $query = "update rrhh.empleadocargo set salarioFijo = '$salario' where Empleado_idEmpleado = '$idEmpleado'";
+        $query = "update empleadocargo set salarioFijo = '$salario' where Empleado_idEmpleado = '$idEmpleado'";
 
         self::getConexion();
 
@@ -174,7 +174,7 @@ class EmpleadoDao extends Conexion {
     public static function eliminarEmpleado($dato) {
         $idEmpleado = $dato;
 
-        $query = "update rrhh.empleado set estado = 0 where idEmpleado = '$idEmpleado'";
+        $query = "update empleado set estado = 0 where idEmpleado = '$idEmpleado'";
 
         self::getConexion();
 
@@ -258,11 +258,11 @@ class EmpleadoDao extends Conexion {
         $dpto          = $empleado->getDepartamentoIdDepartamento();
         $cargo         = $empleado->getCargoIdCargo();
 
-        $q0 = "update rrhh.empleadocargo set Departamento_idDepartamento = ('$dpto'),
+        $q0 = "update empleadocargo set Departamento_idDepartamento = ('$dpto'),
                Cargo_idCargo = ('$cargo'), fechaAsume = '$fechaAsume'
                where Empleado_idEmpleado = ('$txtIdEmpleado')";
 
-        $q = "UPDATE rrhh.empleado 
+        $q = "UPDATE empleado 
               SET nombre = ('$nombre'), 
               apellido = ('$apellido'), 
               ci = ('$ci'), 
