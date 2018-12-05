@@ -16,7 +16,7 @@ class DeduccionDao extends Conexion {
     public static function registrarDeduccion($deduccion) {
         $nombre = $deduccion->getTipoDeduccion();
 
-        $query = "INSERT INTO tipodeduccion (tipoDeduccion) VALUES ('$nombre')";
+        $query = "INSERT INTO TipoDeduccion (tipoDeduccion) VALUES ('$nombre')";
 
         self::getConexion();
 
@@ -59,7 +59,7 @@ class DeduccionDao extends Conexion {
         $idDeduccion     = $deduccion->getIdDeduccion();
         $NombreDeduccion = $deduccion->getNombreDeduccion();
 
-        $query = "UPDATE deduccion SET nombreDeduccion = ('$NombreDeduccion') WHERE idDeduccion = ('$idDeduccion')";
+        $query = "UPDATE Deduccion SET nombreDeduccion = ('$NombreDeduccion') WHERE idDeduccion = ('$idDeduccion')";
 
         self::getConexion();
 
@@ -74,7 +74,7 @@ class DeduccionDao extends Conexion {
 
     // Metodo para mostrar deduccions
     public static function mostrarDeducciones() {
-        $query = "SELECT * FROM tipodeduccion";
+        $query = "SELECT * FROM TipoDeduccion";
 
         self::getConexion();
 
@@ -85,16 +85,16 @@ class DeduccionDao extends Conexion {
     }
 
     public static function mostrarDeduccionesP($idEmpleado) {
-        $q = "select * from empleado e
-              inner join deduccion d
+        $q = "select * from Empleado e
+              inner join Deduccion d
               on e.idEmpleado=d.Empleado_idEmpleado
-              inner join tipodeduccion td
+              inner join TipoDeduccion td
               on d.TipoDeduccion_idTipoDeduccion=td.idTipoDeduccion
               where idEmpleado = '$idEmpleado'";
 
         self::getConexion();
 
-        $resultado = self::$conexion->prepare($query);
+        $resultado = self::$conexion->prepare($q);
         $resultado->execute();
 
         return $resultado;
@@ -102,7 +102,7 @@ class DeduccionDao extends Conexion {
 
     // Metodo para eliminar deduccion
     public static function eliminarDeduccion($idDeduccion) {
-        $query = "DELETE FROM deduccion WHERE idDeduccion = ('$idDeduccion')";
+        $query = "DELETE FROM Deduccion WHERE idDeduccion = ('$idDeduccion')";
 
         self::getConexion();
 

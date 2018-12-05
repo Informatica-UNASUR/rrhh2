@@ -37,7 +37,7 @@ class NominaDao extends Conexion {
         $totalDeduccion  = $nomina->getTotalDeduccion();
         $totalDevengo    = $nomina->getTotalDevengo();
 
-        $query = "insert into nominapago (Empleado_idEmpleado,diasTrabajados, fechaPago, periodoPago, totalDeduccion, totalDevengo, salario, totalPercibido ) values (
+        $query = "insert into NominaPago (Empleado_idEmpleado,diasTrabajados, fechaPago, periodoPago, totalDeduccion, totalDevengo, salario, totalPercibido ) values (
                   '$idEmpleado', '$dias', '$fecha', '$periodo','$totalDeduccion', '$totalDevengo','$salario', '$totalPercibido')";
         /*
         $query = "{call sp_registrar_nomina(?,?,?,?)}";
@@ -174,7 +174,7 @@ class NominaDao extends Conexion {
     public static function mostrarSalario($empleado) {
         $idEmpleado      = $empleado->getEmpleadoIdEmpleado();
 
-        $query = "select salarioFijo as Salario from empleadocargo where Empleado_idEmpleado = $idEmpleado order by Empleado_idEmpleado desc";
+        $query = "select salarioFijo as Salario from EmpleadoCargo where Empleado_idEmpleado = $idEmpleado order by Empleado_idEmpleado desc";
 
         self::getConexion();
 

@@ -16,7 +16,7 @@ class DepartamentoDao extends Conexion {
     public static function registrarDepartamento($departamento) {
         $nombre      = $departamento->getNombreDepartamento();
 
-        $query = "INSERT INTO departamento(nombreDepartamento) VALUES ('$nombre')";
+        $query = "INSERT INTO Departamento(nombreDepartamento) VALUES ('$nombre')";
 
         self::getConexion();
 
@@ -33,7 +33,7 @@ class DepartamentoDao extends Conexion {
         $idDepartamento     = $departamento->getIdDepartamento();
         $NombreDepartamento = $departamento->getNombreDepartamento();
 
-        $query = "UPDATE departamento SET nombreDepartamento = ('$NombreDepartamento') WHERE idDepartamento = ('$idDepartamento')";
+        $query = "UPDATE Departamento SET nombreDepartamento = ('$NombreDepartamento') WHERE idDepartamento = ('$idDepartamento')";
 
         self::getConexion();
 
@@ -48,7 +48,7 @@ class DepartamentoDao extends Conexion {
 
     // Metodo para mostrar departamentos
     public static function mostrarDepartamentos() {
-        $query = "SELECT idDepartamento, nombreDepartamento FROM departamento";
+        $query = "SELECT idDepartamento, nombreDepartamento FROM Departamento";
 
         self::getConexion();
 
@@ -60,10 +60,10 @@ class DepartamentoDao extends Conexion {
 
     public static function mostrarDptos() {
         $query = "select DISTINCT idDepartamento, nombreDepartamento 
-            from empleado e
-            inner join empleadocargo ec
+            from Empleado e
+            inner join EmpleadoCargo ec
             on e.idEmpleado=ec.Empleado_idEmpleado
-            inner join departamento d
+            inner join Departamento d
             on ec.Departamento_idDepartamento=d.idDepartamento
             where e.estado = 1";
 
@@ -77,7 +77,7 @@ class DepartamentoDao extends Conexion {
 
     // Metodo para eliminar departamento
     public static function eliminarDepartamento($idDepartamento) {
-        $query = "DELETE FROM departamento WHERE idDepartamento = ('$idDepartamento')";
+        $query = "DELETE FROM Departamento WHERE idDepartamento = ('$idDepartamento')";
 
         self::getConexion();
 
@@ -91,7 +91,7 @@ class DepartamentoDao extends Conexion {
     }
 
     public static function existeDepartamento($nombreDepartamento) {
-        $query = "SELECT nombreDepartamento FROM departamento WHERE nombreDepartamento = ('$nombreDepartamento')";
+        $query = "SELECT nombreDepartamento FROM Departamento WHERE nombreDepartamento = ('$nombreDepartamento')";
 
         self::getConexion();
 

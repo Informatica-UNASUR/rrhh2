@@ -7,7 +7,7 @@ CREATE PROCEDURE sp_actualizar_usuario(
   IN _rolId INT
 )
 BEGIN
-UPDATE usuario SET usuario = _user, estado = _state WHERE idUsuario = _id;
-UPDATE usuariorol SET Rol_idRol = _rolId WHERE Usuario_idUsuario = _id;
+UPDATE Usuario SET usuario = _user, estado = _state WHERE idUsuario = _id;
+UPDATE UsuarioRol SET Rol_idRol = _rolId WHERE Usuario_idUsuario = _id;
 END //
 DELIMITER ;

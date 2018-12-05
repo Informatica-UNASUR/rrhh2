@@ -14,8 +14,8 @@ class AuditoriaDao extends Conexion {
     }
 
     public static function mostrarAuditoria() {
-        $query = "select * from auditoria a
-              join detalleauditoria da
+        $query = "select * from Auditoria a
+              join DetalleAuditoria da
               on a.idAuditoria=da.Auditoria_idAuditoria
 ";
 
@@ -30,10 +30,10 @@ class AuditoriaDao extends Conexion {
     // Metodo para mostrar usuarios
     public static function mostrarUsuarios() {
         self::desconectar();
-        $query = "SELECT * FROM usuario u 
-              INNER JOIN usuariorol ur 
+        $query = "SELECT * FROM Usuario u 
+              INNER JOIN UsuarioRol ur 
               ON u.idUsuario=ur.Usuario_idUsuario
-              INNER JOIN rol r
+              INNER JOIN Rol r
               ON ur.Rol_idRol=r.idRol";
 
         self::getConexion();

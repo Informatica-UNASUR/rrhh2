@@ -8,7 +8,7 @@ CREATE PROCEDURE sp_agregar_devengo(
 )
 BEGIN
 	-- set _fecha = (select convert(varchar(10), @fecha, 103));
-	INSERT 	devengo(Empleado_idEmpleado, TipoDevengo_idTipoDevengo, montoDevengo, fechaDevengo, observacion)
+	INSERT 	Devengo(Empleado_idEmpleado, TipoDevengo_idTipoDevengo, montoDevengo, fechaDevengo, observacion)
 	VALUES (_idEmpleado, _idTipoDevengo, _montoDevengo, _fecha, _obsDevengo);
 END //
 DELIMITER ;

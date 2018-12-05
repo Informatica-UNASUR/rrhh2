@@ -16,7 +16,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function login($usuario) {
-        $query = "SELECT * FROM usuario WHERE usuario = :usuario";
+        $query = "SELECT * FROM Usuario WHERE usuario = :usuario";
 
         self::getConexion();
         $resultado = self::$conexion->prepare($query);
@@ -47,7 +47,7 @@ class UsuarioDao extends Conexion {
 
     // Metodo que obtiene un usuario
     public static function getUsuario($usuario) {
-        $query = "SELECT * FROM usuario u INNER JOIN usuariorol ur ON u.idUsuario=ur.Usuario_idUsuario WHERE u.usuario= :usuario";
+        $query = "SELECT * FROM Usuario u INNER JOIN UsuarioRol ur ON u.idUsuario=ur.Usuario_idUsuario WHERE u.usuario= :usuario";
 
         self::getConexion();
         $resultado = self::$conexion->prepare($query);
@@ -78,10 +78,10 @@ class UsuarioDao extends Conexion {
 
     // Metodo para mostrar usuarios
     public static function mostrarUsuarios() {
-        $query = "SELECT * FROM usuario u 
-              INNER JOIN usuariorol ur 
+        $query = "SELECT * FROM Usuario u 
+              INNER JOIN UsuarioRol ur 
               ON u.idUsuario=ur.Usuario_idUsuario
-              INNER JOIN rol r
+              INNER JOIN Rol r
               ON ur.Rol_idRol=r.idRol";
 
 //        self::getConexion();
@@ -94,7 +94,7 @@ class UsuarioDao extends Conexion {
 
     // Metodo para mostrar roles
     public static function mostrarRoles() {
-        $query = "SELECT * FROM rol";
+        $query = "SELECT * FROM Rol";
 
         //self::getConexion();
 
@@ -151,7 +151,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function desactivarUsuario($idUsuario) {
-        $query = "UPDATE usuario SET estado = '0' WHERE usuario.idUsuario = $idUsuario;";
+        $query = "UPDATE Usuario SET estado = '0' WHERE usuario.idUsuario = $idUsuario;";
 
         self::getConexion();
 
@@ -166,7 +166,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function existe($nombre) {
-        $query = "SELECT usuario FROM usuario WHERE usuario = ('$nombre')";
+        $query = "SELECT usuario FROM Usuario WHERE usuario = ('$nombre')";
 
         self::getConexion();
 
@@ -181,7 +181,7 @@ class UsuarioDao extends Conexion {
     }
 
     public static function actualizarPassword($usuario, $password) {
-        $query = "UPDATE usuario SET password = '$password' WHERE usuario.idUsuario = ('$usuario')";
+        $query = "UPDATE Usuario SET password = '$password' WHERE usuario.idUsuario = ('$usuario')";
 
         self::getConexion();
 

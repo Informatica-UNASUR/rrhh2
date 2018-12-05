@@ -63,34 +63,8 @@
                                 <input type="email" name="txtEmail"  id="email" class="form-control" required>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">Cuenta bancaria</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="txtCtaBanco"  id="ctaBanco" class="form-control" required>
-                            </div>
-                            <label class="col-sm-1 col-form-label">Nac.</label>
-                            <div class="col-sm-4">
-                                <input type="text" name="txtNacionalidad"  id="nacionalidad" class="form-control" required>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <br><div class="form-group row">
-                                <label class="col-sm-2 col-form-label text-right">Horario</label>
-                                <div class="col-sm-9">
-                                    <select name="cbHorario" id="edit_horario" class="custom-select" required>
-                                        <option value="" selected disabled>--Selecciona--</option>
-                                        <?php
-                                        $r = EmpleadoControlador::mostrarHorarios();
-                                        while(($fila = $r->fetch(PDO::FETCH_ASSOC)) != NULL) {
-                                            echo '<option value="'.$fila['idHorario'].'">'.'ENTRADA: '.$fila['horaEntrada'].'/SALIDA: '.$fila['horaSalida'].'</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label text-right">Estado civil</label>
                                 <div class="col-sm-9">
@@ -105,30 +79,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label text-right">Contrato</label>
-                                <div class="col-sm-9">
-                                    <select name="txtContrato" id="edit_contrato" class="custom-select" required>
-                                        <option value="" selected disabled>--Selecciona--</option>
-                                        <?php
-                                        $r = EmpleadoControlador::mostrarContratos();
-                                        while(($fila = $r->fetch(PDO::FETCH_ASSOC)) != NULL) {
-                                            echo '<option value="'.$fila['idContrato'].'">'.$fila['tipoContrato'].'</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label text-right">Fecha ingreso</label>
-                            <div class="col-sm-4">
-                                <input type="date" name="txtFechaIn"  id="ingreso" class="form-control" required>
-                            </div>
-                            <label class="col-sm-1 col-form-label">Salario</label>
-                            <div class="col-sm-4">
-                                <input type="number" name="txtSalario" id="salario" class="form-control" required>
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">Departamento</label>
                             <div class="col-sm-9">
@@ -143,6 +93,14 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">Salario</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="txtSalario"  id="salario" class="form-control" required>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">Cargo</label>
                             <div class="col-sm-9">

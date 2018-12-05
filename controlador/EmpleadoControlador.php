@@ -49,7 +49,9 @@ class EmpleadoControlador
         return EmpleadoDao::mostrarSalariosEmpleados($idDepartamento);
     }
 
-    public static function agregarEmpleado($txtNombreEmpleado, $txtApellidoEmpleado, $txtCi, $fechaNac, $cbSexo, $txtTelefono, $txtDireccion, $txtEmail, $txtCtaBanco, $txtNacionalidad, $cbHorario, $cbCivil, $txtContrato, $txtSalario,$txtFechaIn, $cbCargo, $cbDepartamento)
+    public static function agregarEmpleado(
+        $txtNombreEmpleado, $txtApellidoEmpleado, $txtCi, $fechaNac, $cbSexo, $txtTelefono,
+        $txtDireccion, $txtEmail, $cbCivil, $txtSalario, $cbCargo, $cbDepartamento)
     {
         $obj_empleado = new Empleado();
         $obj_empleado->setNombre($txtNombreEmpleado);
@@ -60,13 +62,8 @@ class EmpleadoControlador
         $obj_empleado->setTelefono($txtTelefono);
         $obj_empleado->setDireccion($txtDireccion);
         $obj_empleado->setEmail($txtEmail);
-        $obj_empleado->setNumCuenta($txtCtaBanco);
-        $obj_empleado->setNacionalidad($txtNacionalidad);
-        $obj_empleado->setIdHorario($cbHorario);
         $obj_empleado->setIdEstadoCivil($cbCivil);
-        $obj_empleado->setIdContrato($txtContrato);
         $obj_empleado->setSalario($txtSalario);
-        $obj_empleado->setFechaAsume($txtFechaIn);
         $obj_empleado->setCargoIdCargo($cbCargo);
         $obj_empleado->setDepartamentoIdDepartamento($cbDepartamento);
 

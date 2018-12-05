@@ -21,7 +21,7 @@ class SolicitudDao extends Conexion {
         $horaHasta  = $solicitud->getHoraHasta();
         $idEmpleado = $solicitud->getEmpleadoIdEmpleado();
 
-        $query = "INSERT INTO solicitud(motivo, fechaDesde, fechaHasta, horaDesde, horaHasta, Empleado_idEmpleado) 
+        $query = "INSERT INTO Solicitud(motivo, fechaDesde, fechaHasta, horaDesde, horaHasta, Empleado_idEmpleado) 
                   VALUES ('$motivo', '$fechaDesde', '$fechaHasta', '$horaDesde', '$horaHasta', '$idEmpleado')";
 
         $resultado = self::getConexion()->prepare($query);
@@ -35,7 +35,7 @@ class SolicitudDao extends Conexion {
 
     public static function mostrarHistoricoSolicitudes($idEmpleado) {
         $query = "SELECT motivo, fechaDesde, fechaHasta, horaDesde, horaHasta
-                  FROM `solicitud` WHERE Empleado_idEmpleado = :id";
+                  FROM `Solicitud` WHERE Empleado_idEmpleado = :id";
 
         $resultado = self::getConexion()->prepare($query);
         $resultado->bindValue(":id", $idEmpleado);
