@@ -2,7 +2,7 @@
 class Conexion {
     public static function conectar() {
         try {
-            $cn = new PDO("mysql:host=localhost;dbname=rrhh", "root", "");
+            $cn = new PDO("mysql:host=u28rhuskh0x5paau.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=jeo0ktvqcythq1bl", "ucupcjvzu3bow8xp", "jtagk7cvqmvwqkgw");
             /*if($cn)
                 echo "Conexion ok";
             else
